@@ -1,14 +1,50 @@
 import * as React from 'react';
+import { Box } from '@mui/material';
 import ResponsiveAppBar from './ResponsiveAppBar.js';
-import { Container, Grid, Typography } from '@mui/material';
+import Hero from './Hero.js';
+import About from './About.js';
+import Services from './Services.js';
+import Contact from './Contact.js';
 
 export default function App() {
   return (
     <div>
+      
       <ResponsiveAppBar />
-      <Container maxWidth='lg'>
-        <Typography align='center' component='h1' gutterBottom variant='h2' style={{marginTop: "100px"}}>Marc's Lawn & Gardening Service</Typography>
-      </Container>
+
+      <Box
+        alignItems="center"
+        display="flex"
+        // height="calc(100dvh - 70px)"
+        height="100dvh"
+      >
+        <Hero />
+      </Box>
+
+      <Box
+        alignItems="center"
+        display="flex"
+        height="calc(100dvh - 70px)"
+      >
+        <Services />
+      </Box>
+
+      <Box
+        alignItems="center"
+        display="flex"
+        height="calc(100dvh - 70px)"
+      >
+        <Contact />
+      </Box>
+
+      <Box
+        alignItems="center"
+        display="flex"
+        height="calc(100dvh - 70px)"
+      >
+        <About />
+      </Box>
+      
     </div>
   );
 }
