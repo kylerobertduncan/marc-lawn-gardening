@@ -28,6 +28,7 @@ function ResponsiveAppBar() {
     <AppBar position='sticky'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
+          
           <Yard sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant='h6'

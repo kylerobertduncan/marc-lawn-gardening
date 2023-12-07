@@ -1,31 +1,31 @@
 
-import { Container, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
 
 export default function Services() {
   return (
-    <Container maxWidth='md'>
+    <Box display="flex" flexDirection="column" height={{ xs: "100dvh", md: "auto" }} justifyContent="center">
 
       <Typography component='h2' gutterBottom variant='h3'>Services</Typography>
 
       <List disablePadding>
         
-        <ListItem disableGutters>
+        <ListItem disablePadding>
             <ListItemText primary="Lawn Mowing" />
         </ListItem>
         
-        <ListItem disableGutters>
-          <ListItemText primary="Gardening" />
+        <ListItem disablePadding>
+          <ListItemText primary="Gardening & Planting" />
         </ListItem>
 
-        <ListItem disableGutters>
-          <ListItemText primary="Trimming & Pruning" />
+        <ListItem disablePadding>
+          <ListItemText primary="Trimming, Shaping & Pruning" />
         </ListItem>
 
-        <ListItem disableGutters>
+        <ListItem disablePadding>
           <ListItemText primary="Control & Removal of Pest Plants" />
         </ListItem>
 
-        <ListItem disableGutters>
+        <ListItem disablePadding>
           <ListItemText primary="Regular Maintenance" />
         </ListItem>
 
@@ -35,6 +35,6 @@ export default function Services() {
         - Residential or (small to medium?) commercial
       */}
 
-    </Container>
+    </Box>
   )
 }
