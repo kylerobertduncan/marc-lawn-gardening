@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { AppBar, Box, Container, Grid, Toolbar, Typography } from '@mui/material';
 import { Yard } from '@mui/icons-material';
 import About from './About.js';
@@ -8,7 +7,7 @@ import Contact from './Contact.js';
 export default function App() {
   return (
     <Box>
-      
+
       <AppBar position="fixed">
         <Toolbar disableGutters>
           <Grid alignItems="center" component={Container} container maxWidth="lg">

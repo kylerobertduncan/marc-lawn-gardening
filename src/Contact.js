@@ -1,44 +1,38 @@
-import * as React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 import { Backdrop, Box, Button, CircularProgress, Grid, Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Modal, TextField, Typography } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
-const style = {
+const modalStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  width: 350,
+  bgcolor: 'background.default',
+  border: '2px solid primary.main',
   boxShadow: 24,
   p: 4,
+  borderRadius: "4px",
 };
 
 export default function Contact() {
   // element controllers
-  const [backdropOpen, setBackdropOpen] = React.useState(false);
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [backdropOpen, setBackdropOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   // input controllers
-  const [quotePhone, setQuotePhone] = React.useState("");
-  const [quoteName, setQuoteName] = React.useState("");
-  const [quoteEmail, setQuoteEmail] = React.useState("");
+  const [quotePhone, setQuotePhone] = useState("");
+  const [quoteName, setQuoteName] = useState("");
+  const [quoteEmail, setQuoteEmail] = useState("");
   // modal message controllers
-  const [modalHeader, setModalHeader] = React.useState("");
-  const [modalText, setModalText] = React.useState("");
+  const [modalHeader, setModalHeader] = useState("");
+  const [modalText, setModalText] = useState("");
+  const [modalSuccess, setModalSuccess] = useState(true);
 
   function clearForm() {
     setQuotePhone("");
     setQuoteName("");
     setQuoteEmail("");
-  }
-
-  function closeModal(success) {
-    setModalOpen(false);
-    if (success) clearForm();
-    
-    // window.alert("Thanks for the message, we'll get in touch soon.")
   }
 
   function handleSubmit(e) {
@@ -67,14 +61,16 @@ export default function Contact() {
       .then(response => response.json())
       .then(data => {
         console.debug("Form data sent", data);
+        setModalHeader("Message Sent");
+        setModalText("Thanks for getting in touch. Marc will get back to you soon.")
         setBackdropOpen(false);
         setModalOpen(true);
         clearForm();
-        // window.alert("Thanks for the message, we'll get in touch soon.")
       })
       .catch(error => {
         console.error("Error sending form data:", error);
-        window.alert("There was an error sending the message. Please contact Marc by phone or email until we can resolve this issue.")
+        setModalHeader("Error");
+        setModalText("Sorry! There was an error sending the message. Please try again later, or contact Marc by phone or email.")
       });
   }
   
@@ -128,7 +124,7 @@ export default function Contact() {
             onChange={(e) => setQuotePhone(e.target.value)}
             value={quotePhone}
             variant="outlined"
-            type="phone"
+            type="tel"
           />
         </Grid>
         <Grid item xs={12}>
@@ -158,23 +154,23 @@ export default function Contact() {
       </Grid>
 
       <Backdrop
-        sx={{ bgcolour: 'background.paper', color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ bgcolour: 'background.default', color: "primary.main", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={backdropOpen}>
         <CircularProgress color="inherit" />
       </Backdrop>
 
       <Modal
         open={modalOpen}
-        onClose={closeModal}
+        onClose={() => setModalOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            You did it!
+            {modalHeader}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            The message has been successfully sent to Marc!
+            {modalText}
           </Typography>
         </Box>
       </Modal>
