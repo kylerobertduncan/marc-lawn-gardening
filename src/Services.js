@@ -1,11 +1,11 @@
-
-import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
+import marcMowing from "./assets/marc-mowing-1.jpg"
+import { Box, Grid, List, ListItem, ListItemText, Typography } from '@mui/material';
 
 export default function Services() {
   return (
     <Box display="flex" flexDirection="column" height={{ xs: "100dvh", md: "auto" }} justifyContent="center">
 
-      <Typography component='h2' gutterBottom variant='h3'>Services</Typography>
+      <Typography component='h2' gutterBottom variant='h4'>Services</Typography>
 
       <List disablePadding>
         
@@ -34,6 +34,10 @@ export default function Services() {
         - Landscaping ??
         - Residential or (small to medium?) commercial
       */}
+
+      <Grid container marginTop="10px" sx={{ borderRadius: "4px", overflow: "hidden" }} >
+        <img alt="" src={marcMowing} width="100%" />
+      </Grid>
 
     </Box>
   )
