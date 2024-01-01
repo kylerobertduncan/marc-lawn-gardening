@@ -38,7 +38,7 @@ export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
     
-    console.log("Sending form details:", {
+    console.debug("Sending form details:", {
       name: quoteName,
       phone: quotePhone,
       email: quoteEmail,
@@ -48,6 +48,7 @@ export default function Contact() {
     setBackdropOpen(true);
 
     // send info to formsubmit
+    // fetch("https://formsubmit.co/ajax/marc.thornley@gmail.com", {
     fetch("https://formsubmit.co/ajax/kylerobertduncan@duck.com", {
       method: "POST",
       headers: {
@@ -58,20 +59,20 @@ export default function Contact() {
         Object.fromEntries(new FormData(e.target))
       ),
     })
-      .then(response => response.json())
-      .then(data => {
-        console.debug("Form data sent", data);
-        setModalHeader("Message Sent");
-        setModalText("Thanks for getting in touch. Marc will get back to you soon.")
-        setBackdropOpen(false);
-        setModalOpen(true);
-        clearForm();
-      })
-      .catch(error => {
-        console.error("Error sending form data:", error);
-        setModalHeader("Error");
-        setModalText("Sorry! There was an error sending the message. Please try again later, or contact Marc by phone or email.")
-      });
+    .then(response => response.json())
+    .then(data => {
+      console.debug("Form data sent", data);
+      setModalHeader("Message Sent");
+      setModalText("Thanks for getting in touch. Marc will get back to you soon.")
+      setBackdropOpen(false);
+      setModalOpen(true);
+      clearForm();
+    })
+    .catch(error => {
+      console.error("Error sending form data:", error);
+      setModalHeader("Error");
+      setModalText("Sorry! There was an error sending the message. Please try again later, or contact Marc by phone or email.")
+    });
   }
   
 
